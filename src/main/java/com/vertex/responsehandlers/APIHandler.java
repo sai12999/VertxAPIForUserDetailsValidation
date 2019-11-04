@@ -1,5 +1,6 @@
 package com.vertex.responsehandlers;
 
+import com.common.ResponseBuilder;
 import com.common.ValidationConstants;
 import com.common.ValidationUtil;
 import com.exceptions.InvalidFormFieldException;
@@ -14,21 +15,21 @@ public class APIHandler {
                 if(body.toString().equals(""))
                     throw new InvalidFormFieldException(ValidationConstants.EMPTY_BODY);
                 if(ValidationUtil.validate(body.toJsonObject())){
-                    routingContext.response().putHeader("content-type", "application/json").end(ValidationUtil.buildResponse(ValidationConstants.SUCESS_MESSAGE).toString());
+                    routingContext.response().putHeader("content-type", "application/json").end(ResponseBuilder.buildResponse(ValidationConstants.SUCESS_MESSAGE).toString());
                 }
             }
             catch (Exception e){
-                    routingContext.response().putHeader("content-type", "application/json").end(ValidationUtil.buildResponse(e.getMessage()).toString());
+                    routingContext.response().putHeader("content-type", "application/json").end(ResponseBuilder.buildResponse(e.getMessage()).toString());
             }
         });
     }
 
     public void resourceNotFoundHandler(RoutingContext routingContext){
-        routingContext.response().putHeader("content-type", "application/json").end(ValidationUtil.buildResponse("please enter a valid url").toString());
+        routingContext.response().putHeader("content-type", "application/json").end(ResponseBuilder.buildResponse("please enter a valid url").toString());
     }
 
     public void welcomeHandler(RoutingContext routingContext){
-        routingContext.response().putHeader("content-type", "application/json").end(ValidationUtil.buildResponse("welcome").toString());
+        routingContext.response().putHeader("content-type", "application/json").end(ResponseBuilder.buildResponse("welcome").toString());
     }
 
 

@@ -43,8 +43,5 @@ public class ValidationUtil {
         }
     }
 
-    public static JsonObject buildResponse(String msg){
-        JsonObject jsonObject = new JsonObject();
-        return jsonObject.put("status", msg);
-    }
+
 }
